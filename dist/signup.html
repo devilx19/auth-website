@@ -24,6 +24,47 @@
             <p><a href="index.html">Back to Home</a></p>
         </div>
     </div>
-    <script src="scripts.js"></script>
+    <script>// Handle signup
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('signupUsername').value;
+    const password = document.getElementById('signupPassword').value;
+    const signupErrorMessage = document.getElementById('signup-error-message');
+
+    fetch('/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            signupErrorMessage.textContent = data.error;
+        } else {
+            alert(data.message);
+            window.location.href = 'login.html';
+        }
+    });
+});
+
+//password strength
+document.getElementById('signupPassword').addEventListener('input', function() {
+    const password = this.value;
+    const strengthText = document.getElementById('password-strength');
+    let strength = '';
+
+    if (password.length > 8) {
+        strength = 'Weak';
+        if (/[A-Z]/.test(password)) strength = 'Medium';
+        if (/[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password)) strength = 'Strong';
+    }
+
+    strengthText.textContent = `Password Strength: ${strength}`;
+});
+
+</script>
 </body>
 </html>
