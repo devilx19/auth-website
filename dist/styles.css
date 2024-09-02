@@ -1,0 +1,96 @@
+/* Base Styles */
+body {
+    font-family: 'Fira Code', monospace;
+    background-color: #282a36;
+    color: #f8f8f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container Styles */
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.home-container, .form-container {
+    background-color: #44475a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    color: #ff79c6;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #6272a4;
+    background-color: #282a36;
+    color: #f8f8f2;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #50fa7b;
+    color: #282a36;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45c77f;
+}
+
+/* Link Styles */
+a {
+    color: #8be9fd;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Error Message Styles */
+#error-message, #signup-error-message {
+    color: #ff5555;
+    font-size: 14px;
+}
+
+/* Navigation Links Styles */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.nav-link {
+    color: #8be9fd;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+#password-strength {
+    font-size: 14px;
+    color: #ffb86c; /* Dracula orange for password strength indicator */
+    margin-top: 5px;
+}
