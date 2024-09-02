@@ -23,31 +23,26 @@
         </div>
     </div>
     <script>
-    //Handle login
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    // Handle login
+document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const errorMessage = document.getElementById('error-message');
 
-    fetch('/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            errorMessage.textContent = data.error;
-        } else {
-            alert(data.message);
-            window.location.href = 'index.html';
-        }
-    });
+    // Retrieve user data from localStorage
+    const userData = JSON.parse(localStorage.getItem(username));
+
+    // Check if the user exists and the password is correct
+    if (!userData || userData.password !== password) {
+        errorMessage.textContent = 'Invalid username or password';
+    } else {
+        alert('Login successful');
+        window.location.href = 'index.html';
+    }
 });
+
 </script>
 </body>
 </html>

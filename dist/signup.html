@@ -24,31 +24,7 @@
             <p><a href="index.html">Back to Home</a></p>
         </div>
     </div>
-    <script>// Handle signup
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const username = document.getElementById('signupUsername').value;
-    const password = document.getElementById('signupPassword').value;
-    const signupErrorMessage = document.getElementById('signup-error-message');
-
-    fetch('/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            signupErrorMessage.textContent = data.error;
-        } else {
-            alert(data.message);
-            window.location.href = 'login.html';
-        }
-    });
-});
+    <script>
 
 //password strength
 document.getElementById('signupPassword').addEventListener('input', function() {
@@ -63,6 +39,26 @@ document.getElementById('signupPassword').addEventListener('input', function() {
     }
 
     strengthText.textContent = `Password Strength: ${strength}`;
+});
+
+
+ // Handle signup
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('signupUsername').value;
+    const password = document.getElementById('signupPassword').value;
+    const signupErrorMessage = document.getElementById('signup-error-message');
+
+    // Check if the user already exists
+    if (localStorage.getItem(username)) {
+        signupErrorMessage.textContent = 'User already exists';
+    } else {
+        // Save new user data to localStorage
+        localStorage.setItem(username, JSON.stringify({ password }));
+        alert('User signed up successfully');
+        window.location.href = 'login.html';
+    }
 });
 
 </script>
